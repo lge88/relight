@@ -6,6 +6,7 @@
     <title>WebGL - RTI Image</title>
     <link rel="stylesheet" href="css/toggle-switch.css" type="text/css" media="screen" />
     <link type="text/css" href="css/webgl-tutorials.css" rel="stylesheet" />
+    <link href="css/jsCarousel-2.0.0.css" rel="stylesheet" type="text/css" />
 
     <style type="text/css" media="screen">
       #left_col,#mid_col,#right_col {
@@ -36,6 +37,30 @@
       top: 90px;
       left: 20px;
       }
+
+      <!-- #vWrapper { -->
+      <!-- position: absolute; -->
+      <!-- top: 50px; -->
+      <!-- left: 50px; -->
+      <!-- } -->
+
+      <!-- #carouselv { -->
+      <!-- top: 50px; -->
+      <!-- left: 50px; -->
+      <!-- } -->
+
+      <!-- #carouselv img { -->
+      <!-- width: 300px; -->
+      <!-- height: 300px; -->
+      <!-- background: black; -->
+      <!-- margin-bottom: 5px; -->
+      <!-- cursor: pointer; -->
+      <!-- } -->
+
+      <!-- #carouselv div { -->
+      <!-- margin-bottom: 20px; -->
+      <!-- } -->
+
     </style>
   </head>
 
@@ -43,7 +68,54 @@
     <h2 id="status"></h2>
     <h2 id="status2"></h2>
 
-    <div id="left_col"></div>
+    <div id="left_col">
+      <div id="vWrapper">
+        <div id="carouselv">
+          <div>
+            <img alt="" src="resources/object_1/rgb.png" /><br />
+            <span class="thumbnail-text">StoneTablet</span></div>
+          <div>
+            <img alt="" src="resources/object_2/rgb.png" /><br />
+            <span class="thumbnail-text">TombStone</span></div>
+          <div>
+            <img alt="" src="resources/object_3/rgb.png" /><br />
+            <span class="thumbnail-text">BudaHead</span></div>
+          <div>
+            <img alt="" src="resources/object_4/rgb.png" /><br />
+            <span class="thumbnail-text">Rambrandt</span></div>
+          <div>
+            <img alt="" src="resources/object_5/rgb.png" /><br />
+            <span class="thumbnail-text">MayaTablets</span></div>
+
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_1.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_2.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_3.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_4.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_5.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_6.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_7.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+          <!-- <div> -->
+          <!--   <img alt="" src="photos/img_8.jpg" /><br /> -->
+          <!--   <span class="thumbnail-text">Image Text</span></div> -->
+
+        </div>
+      </div>
+    </div>
+
     <div id="mid_col">
 	    <canvas id="my-canvas"></canvas>
     </div>
@@ -62,7 +134,12 @@
     <script type="text/javascript" src="js/webgl-utils.js"></script>
 	  <!-- <script type="text/javascript" src="js/dat.gui.js"></script> -->
 
+		<script src="js/jsCarousel-2.0.0.js" type="text/javascript"></script>
+
+
+
 	  <script type="text/javascript" src="js/LoadShader.js"></script>
+	  <script type="text/javascript" src="js/objects.js"></script>
 	  <script type="text/javascript" src="js/main.js"></script>
 
 	  <script>

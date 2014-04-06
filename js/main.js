@@ -5,6 +5,16 @@ var program;  // shader program
 var images = [];
 var textures = [];
 
+var objects = window.objects;
+var selectedObjectId = 1;
+
+// MayaTablets:
+// Rambrandt:
+// BudaHead:
+// TombStone:
+// StoneTablet
+
+
 var mouseDown = true;
 
 //var lu = 1.0;
@@ -62,6 +72,11 @@ function init(){
 	$('body').bind('touchend', handleTouchEnd);
 }
 
+function getObjectIndexFromPath(src) {
+  var m = src.match(/resources\/object_([0-9]+)\/rgb\.png/);
+  return m ? parseInt(m[1]) : -1;
+}
+
 function setupGUI(){
   var useSpecularBtn = document.getElementById('use_specular');
   useSpecularBtn.addEventListener('click', function() {
@@ -69,35 +84,54 @@ function setupGUI(){
     render();
   });
 
-  // var gui = new dat.GUI();  // var gui = new dat.GUI({autoPlace:false});
+  // $('#carouselv img').click(function() {
+  //   var src = this.src;
+  //   var indx = getObjectIndexFromPath(src);
+  //   console.log('obj indx', indx);
 
-	// // Object Selection
-	// var selectObjectController = gui.add(rtiObj, 'objIdx',
-	//                                      {MayaTablets:  1,
-	// 									                    Rambrandt:    2,
-	// 									                    BudaHead:     3,
-	// 									                    TombStone:    4,
-	// 									                    StoneTablet:  5}).name('Collection');
+  //   rtiObj.lastObjIdx = rtiObj.currObjIdx;
+  //   rtiObj.currObjIdx = indx;
+  //   rtiObj.headReady = false;
+  //   rtiObj.textureReady = false;
 
-	// selectObjectController.onChange(function(value) {
-	//   // Fires on every change, drag, keypress, etc.
-	//   rtiObj.lastObjIdx = rtiObj.currObjIdx;
-	// 	rtiObj.currObjIdx = rtiObj.objIdx;
+  //   loadRTIObject(indx, render);
+  //   selectedObjectId = indx;
+  //   updateGUI();
+  // });
 
-	//   // reset flags
-	//   rtiObj.headerReady = false;
-	// 	rtiObj.textureReady = false;
+  // updateGUI();
 
-	// 	loadRTIObject(rtiObj.objIdx, render);
-	// });
+  $(document).ready(function() {
+    $('#carouselv').jsCarousel({
+      onthumbnailclick: function(src) {
+        var indx = getObjectIndexFromPath(src);
+        console.log('obj indx', indx);
 
-	// // Use Specular Control
-	// var useSpecularController = gui.add(rtiObj, 'useSpecular');
-	// useSpecularController.onFinishChange(function(value) {
-	//   // Fires when a controller loses focus
-	//   rtiObj.useSpecular = value;
-	//   render();
-	// });
+        rtiObj.lastObjIdx = rtiObj.currObjIdx;
+        rtiObj.currObjIdx = indx;
+        rtiObj.headReady = false;
+        rtiObj.textureReady = false;
+
+        loadRTIObject(indx, render);
+      },
+      autoscroll: true,
+      masked: true,
+      itemstodisplay: 5,
+      orientation: 'v'
+    });
+
+  });
+}
+
+function updateGUI() {
+  $('#carouselv img').each(function(indx) {
+    if (indx + 1 === selectedObjectId) {
+      $(this).css('border', 'solid');
+      $(this).css('border-color', 'red');
+    } else {
+      $(this).css('border', 'none');
+    }
+  });
 }
 
 function initWebGL() {
