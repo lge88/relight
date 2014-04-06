@@ -47,7 +47,6 @@ function init(){
 
 	loadRTIObject(rtiObj.objIdx, initShaders);
 
-	// Apply "dat.gui.js"
 	setupGUI();
 
 	// Register Mouse Events
@@ -64,36 +63,41 @@ function init(){
 }
 
 function setupGUI(){
+  var useSpecularBtn = document.getElementById('use_specular');
+  useSpecularBtn.addEventListener('click', function() {
+    rtiObj.useSpecular = useSpecularBtn.checked;
+    render();
+  });
 
-  var gui = new dat.GUI();  // var gui = new dat.GUI({autoPlace:false});
+  // var gui = new dat.GUI();  // var gui = new dat.GUI({autoPlace:false});
 
-	// Object Selection
-	var selectObjectController = gui.add(rtiObj, 'objIdx',
-	                                     {MayaTablets:  1,
-										                    Rambrandt:    2,
-										                    BudaHead:     3,
-										                    TombStone:    4,
-										                    StoneTablet:  5}).name('Collection');
+	// // Object Selection
+	// var selectObjectController = gui.add(rtiObj, 'objIdx',
+	//                                      {MayaTablets:  1,
+	// 									                    Rambrandt:    2,
+	// 									                    BudaHead:     3,
+	// 									                    TombStone:    4,
+	// 									                    StoneTablet:  5}).name('Collection');
 
-	selectObjectController.onChange(function(value) {
-	  // Fires on every change, drag, keypress, etc.
-	  rtiObj.lastObjIdx = rtiObj.currObjIdx;
-		rtiObj.currObjIdx = rtiObj.objIdx;
+	// selectObjectController.onChange(function(value) {
+	//   // Fires on every change, drag, keypress, etc.
+	//   rtiObj.lastObjIdx = rtiObj.currObjIdx;
+	// 	rtiObj.currObjIdx = rtiObj.objIdx;
 
-	  // reset flags
-	  rtiObj.headerReady = false;
-		rtiObj.textureReady = false;
+	//   // reset flags
+	//   rtiObj.headerReady = false;
+	// 	rtiObj.textureReady = false;
 
-		loadRTIObject(rtiObj.objIdx, render);
-	});
+	// 	loadRTIObject(rtiObj.objIdx, render);
+	// });
 
-	// Use Specular Control
-	var useSpecularController = gui.add(rtiObj, 'useSpecular');
-	useSpecularController.onFinishChange(function(value) {
-	  // Fires when a controller loses focus
-	  rtiObj.useSpecular = value;
-	  render();
-	});
+	// // Use Specular Control
+	// var useSpecularController = gui.add(rtiObj, 'useSpecular');
+	// useSpecularController.onFinishChange(function(value) {
+	//   // Fires when a controller loses focus
+	//   rtiObj.useSpecular = value;
+	//   render();
+	// });
 }
 
 function initWebGL() {
@@ -151,8 +155,19 @@ function render(){
 	  rtiObj.lastObjIdx = rtiObj.objIdx;
 	  // Object changes, reload textures
 
-		canvas.width  = rtiObj.size[0]; // in pixels
-    canvas.height = rtiObj.size[1]; // in pixels
+		// canvas.width  = rtiObj.size[0]; // in pixels
+    // canvas.height = rtiObj.size[1]; // in pixels
+    var w = rtiObj.size[0];
+    var h = rtiObj.size[1];
+    var wOverh = w/h;
+    if (w > h) {
+      canvas.width = 1024;
+      canvas.height = 1024/wOverh;
+    } else {
+      canvas.height = 1024;
+      canvas.width = 1024*wOverh;
+    }
+
 
 		gl.viewport(0, 0, canvas.width, canvas.height);
 
@@ -337,7 +352,7 @@ var currentFingers;
 var lastClickFlag = false;
 
 function handleTouchStart(jQueryEvent) {
-  jQueryEvent.preventDefault();
+  // jQueryEvent.preventDefault();
   var ev = window.event;
   var numOfFingers = ev.touches.length;
   if (numOfFingers === 1) {
@@ -577,8 +592,19 @@ function updateRTIInfo(size, scales, biases, callback) {
 
 	// ... set up WebGL ...
 	// Load RTI Viewer Settings
-	canvas.width  = rtiObj.size[0]; // in pixels
-  canvas.height = rtiObj.size[1]; // in pixels
+	// canvas.width  = rtiObj.size[0]; // in pixels
+  // canvas.height = rtiObj.size[1]; // in pixels
+
+  var w = rtiObj.size[0];
+  var h = rtiObj.size[1];
+  var wOverh = w/h;
+  if (w > h) {
+    canvas.width = 1024;
+    canvas.height = 1024/wOverh;
+  } else {
+    canvas.height = 1024;
+    canvas.width = 1024*wOverh;
+  }
 
 	viewDiagRadius = {x: canvas.width / 2, y: canvas.height / 2};
 	circleRadius   = {x: canvas.width / 2, y: canvas.height / 2};
