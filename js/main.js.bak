@@ -9,7 +9,6 @@ var textures = [];
 var objects = window.objects;
 var selectedObjectIndx = 0;
 var annotations = [];
-var showHints = true;
 
 var mouseDown = true;
 
@@ -83,18 +82,6 @@ function setupGUI(){
     render();
   });
 
-  var useHintsBtn = document.getElementById('use_hints');
-  useHintsBtn.addEventListener('click', function() {
-    showHints = useHintsBtn.checked;
-    if (showHints) {
-      handleDoubleClick();
-      startAnimateAnnotations();
-    } else {
-      stopAnimateAnnotations();
-    }
-    render();
-  });
-
   // $('#carouselv img').click(function() {
   //   var src = this.src;
   //   var indx = getObjectIndexFromPath(src);
@@ -128,7 +115,7 @@ function setupGUI(){
           updateGUI();
         }
       },
-      autoscroll: false,
+      autoscroll: true,
       masked: true,
       itemstodisplay: 5,
       orientation: 'v'
@@ -171,9 +158,8 @@ var annotationAnimationId = null;
 var animationStartTime = 0;
 function startAnimateAnnotations() {
   var $ann = $('#annotations');
-  var T = 3000;
+  var T = 2000;
   var w = Math.PI * 2 / T;
-
   function animate() {
     var now = Date.now();
     var t = Math.sin(w * (now - animationStartTime));
@@ -187,7 +173,7 @@ function startAnimateAnnotations() {
 }
 
 function stopAnimateAnnotations() {
-  if (annotationAnimationId) clearTimeout(annotationAnimationId);
+  clearTimeout(annotationAnimationId);
   annotationAnimationId = null;
 }
 
@@ -513,10 +499,6 @@ function handleTouchMove(jQueryEvent){
 
   if (numOfFigures == 2) {
     // zoom
-    if (showHints) {
-      return;
-    }
-
     if (!inGestureMode) {
       setStartFingers(ev);
       return;

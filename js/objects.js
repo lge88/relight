@@ -4,15 +4,10 @@ var objects = [
     src: "resources/object_1",
     annotations: [
       {
-        x: 200,
-        y: 300,
-        text: "thing 1"
-      },
-      {
-        x: 500,
-        y: 600,
-        text: "thing 2"
-      },
+        x: 0,
+        y: 0,
+        text: "Object 1"
+      }
     ]
   },
   {
@@ -20,15 +15,10 @@ var objects = [
     src: "resources/object_2",
     annotations: [
       {
-        x: 200,
-        y: 300,
-        text: "thing 1"
-      },
-      {
-        x: 500,
-        y: 600,
-        text: "thing 2"
-      },
+        x: 0,
+        y: 0,
+        text: "Object 2"
+      }
     ]
   },
   {
@@ -36,15 +26,32 @@ var objects = [
     src: "resources/object_3",
     annotations: [
       {
-        x: 200,
-        y: 300,
-        text: "thing 1"
-      },
+        x: 0,
+        y: 0,
+        text: "Object 3"
+      }
+    ]
+  },
+  {
+    id: "TombStone",
+    src: "resources/object_4",
+    annotations: [
       {
-        x: 500,
-        y: 600,
-        text: "thing 2"
-      },
+        x: 512,
+        y: 512,
+        text: "Things 4"
+      }
+    ]
+  },
+  {
+    id: "Tablet",
+    src: "resources/object_5",
+    annotations: [
+      {
+        x: 400,
+        y: 400,
+        text: "Things 5"
+      }
     ]
   }
 ];

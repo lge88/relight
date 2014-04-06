@@ -27,7 +27,7 @@
 .onoffswitch-inner:before {
     content: "Specular";
     padding-left: 10px;
-    background-color: #EDEDED; color: #1DE9F0;
+    background-color: #DEB11D; color: #1DE9F0;
 }
 
 .onoffswitch-inner:after {
@@ -39,7 +39,7 @@
 
 .onoffswitch-switch {
     width: 45px; margin: 7.5px;
-    background: #FFFFFF;
+    background: #A1A1A1;
     border: 2px solid #999999; border-radius: 20px;
     position: absolute; top: 0; bottom: 0; right: 136px;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
@@ -52,4 +52,5 @@
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
+    background-color: #27A1CA;
 }

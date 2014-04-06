@@ -51,11 +51,11 @@
       left: 20px;
       }
 
-      #vWrapper {
-      position: absolute;
-      top: 50px;
-      left: 50px;
-      }
+      #vWrapper { 
+      position: absolute; 
+      top: 50px; 
+      left: 50px; 
+      } 
 
       <!-- #carouselv { -->
       <!-- top: 50px; -->
@@ -86,24 +86,19 @@
         <div id="carouselv">
           <div>
             <img alt="" src="resources/object_1/rgb.png" /><br />
-            <!--<span class="thumbnail-text">StoneTablet</span></div> -->
-            </div>
+            <span class="thumbnail-text">StoneTablet</span></div>
           <div>
             <img alt="" src="resources/object_2/rgb.png" /><br />
-            <!--<span class="thumbnail-text">TombStone</span></div> -->
-            </div>
+            <span class="thumbnail-text">TombStone</span></div>
           <div>
             <img alt="" src="resources/object_3/rgb.png" /><br />
-            <!--<span class="thumbnail-text">BudaHead</span></div> -->
-            </div>
+            <span class="thumbnail-text">BudaHead</span></div>
           <div>
             <img alt="" src="resources/object_4/rgb.png" /><br />
-            <!--<span class="thumbnail-text">Rambrandt</span></div> -->
-            </div>
+            <span class="thumbnail-text">Rambrandt</span></div>
           <div>
             <img alt="" src="resources/object_5/rgb.png" /><br />
-            </div>
-            <!--<span class="thumbnail-text">MayaTablets</span></div> -->
+            <span class="thumbnail-text">MayaTablets</span></div>
 
           <!-- <div> -->
           <!--   <img alt="" src="photos/img_1.jpg" /><br /> -->
