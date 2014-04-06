@@ -7,8 +7,9 @@ var textures = [];
 
 // defined in object.js
 var objects = window.objects;
-var selectedObjectIndx = 0;
+var selectedObjectIndx = 3;
 var annotations = [];
+var selectedAnnonatationIndx = -1;
 var showHints = true;
 
 var mouseDown = true;
@@ -51,11 +52,17 @@ function init(){
 	canvas = document.getElementById("my-canvas");
 	initWebGL();
 
-	loadRTIObject(rtiObj.objIdx, initShaders);
+	// loadRTIObject(rtiObj.objIdx, initShaders);
+  var cb = function() {
+    initShaders(function() {
+      updateGUI();
+    });
+  }
+	loadRTIObject(selectedObjectIndx+1, cb);
 
 	setupGUI();
 
-  updateGUI();
+  // updateGUI();
   startAnimateAnnotations();
 
 	// Register Mouse Events
@@ -90,8 +97,10 @@ function setupGUI(){
       handleDoubleClick();
       startAnimateAnnotations();
     } else {
+      selectedAnnonatationIndx = -1;
       stopAnimateAnnotations();
     }
+    updateGUI();
     render();
   });
 
@@ -150,20 +159,52 @@ function updateGUI() {
   var $ann = $('#annotations');
   $ann.empty();
 
-  var indx = selectedObjectIndx;
-  var annotations = objects[indx].annotations;
-  if (Array.isArray(annotations)) {
-    annotations.forEach(function(a) {
-      var x = a.x, y = a.y, text = a.text;
-      var tooltip = document.createElement('span');
-      var can = document.getElementById("my-canvas");
-      var left = can.offsetLeft + x, top = can.offsetTop + y;
-      tooltip.textContent = text;
-      tooltip.style.position = 'absolute';
-      tooltip.style.left = left + 'px';
-      tooltip.style.top = top + 'px';
-      $ann.append(tooltip);
-    });
+  if (showHints) {
+    var indx = selectedObjectIndx;
+    var annotations = objects[indx].annotations;
+    if (Array.isArray(annotations)) {
+      annotations.forEach(function(a, i) {
+        var x = a.x, y = a.y, text = a.text;
+        var tooltip = document.createElement('div');
+        var img = new Image();
+        img.src = 'cross.png';
+        img.width = 80;
+        img.height = 80;
+        var can = document.getElementById("my-canvas");
+        var left = can.offsetLeft + x, top = can.offsetTop + y;
+        // tooltip.textContent = text;
+        tooltip.style.position = 'absolute';
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+        $(tooltip).append(img);
+
+        var popText = document.createElement('div');
+        $(tooltip).append(popText);
+
+        img.addEventListener('click', function() {
+          $(popText).popover({
+            placement: 'bottom',
+            content: text,
+            container: tooltip
+          }).popover('toggle');
+          $(popText).css('background', 'yellow');
+
+          if (selectedAnnonatationIndx === i)
+            selectedAnnonatationIndx = -1;
+          else
+            selectedAnnonatationIndx = i;
+        });
+
+        $ann.append(tooltip);
+      });
+
+      // if (selectedAnnonatationIndx >= 0) {
+      //   var hint = annotations[selectedAnnonatationIndx].text;
+      //   // show hint text;
+
+      // }
+    }
+
   }
 }
 
@@ -177,9 +218,13 @@ function startAnimateAnnotations() {
   function animate() {
     var now = Date.now();
     var t = Math.sin(w * (now - animationStartTime));
-    var color = 'rgba(255, 255, 255, ' + t + ')';
-    $ann.children().each(function() {
-      this.style.color = color;
+    // var color = 'rgba(255, 255, 255, ' + t + ')';
+    $ann.children().each(function(i) {
+      if (i === selectedAnnonatationIndx)
+        this.style.opacity = 1.0;
+      else
+        this.style.opacity = t;
+
     });
     annotationAnimationId = setTimeout(animate, 40);
   }
@@ -207,7 +252,7 @@ function initWebGL() {
 	}
 }
 
-function initShaders(){
+function initShaders(cb){
 
 	if (!rtiObj.headerReady || !rtiObj.textureReady){
 	  // textures or header info not loaded yet
@@ -221,6 +266,7 @@ function initShaders(){
     function (shaderText) {
 	    setupShader(shaderText);  // Setup Shader Program
 	  	render();  // Start Render Loop
+      if (cb) cb();
     },
 
 	  function (url) {

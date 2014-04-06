@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/toggle-switch.css" type="text/css" media="screen" />
     <link type="text/css" href="css/webgl-tutorials.css" rel="stylesheet" />
     <link href="css/jsCarousel-2.0.0.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <style type="text/css" media="screen">
 
       #use_hints_container .onoffswitch-inner:before {
@@ -50,12 +51,16 @@
       top: 150px;
       left: 20px;
       }
-
-      #vWrapper { 
-      position: absolute; 
-      top: 50px; 
-      left: 50px; 
-      } 
+			#iframe-wrap{
+				position: absolute;
+			top: 700px;
+			left: 100px;
+			}
+      #vWrapper {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      }
 
       <!-- #carouselv { -->
       <!-- top: 50px; -->
@@ -78,27 +83,32 @@
   </head>
 
   <body>
-    <h2 id="status"></h2>
-    <h2 id="status2"></h2>
+    <h2 id="status" style="display:none;"></h2>
+    <h2 id="status2" style="display:none;"></h2>
 
     <div id="left_col">
       <div id="vWrapper">
         <div id="carouselv">
           <div>
             <img alt="" src="resources/object_1/rgb.png" /><br />
-            <span class="thumbnail-text">StoneTablet</span></div>
+            <!--<span class="thumbnail-text">StoneTablet</span></div> -->
+            </div>
           <div>
             <img alt="" src="resources/object_2/rgb.png" /><br />
-            <span class="thumbnail-text">TombStone</span></div>
+            <!--<span class="thumbnail-text">TombStone</span></div> -->
+            </div>
           <div>
             <img alt="" src="resources/object_3/rgb.png" /><br />
-            <span class="thumbnail-text">BudaHead</span></div>
+            <!--<span class="thumbnail-text">BudaHead</span></div> -->
+            </div>
           <div>
             <img alt="" src="resources/object_4/rgb.png" /><br />
-            <span class="thumbnail-text">Rambrandt</span></div>
+            <!--<span class="thumbnail-text">Rambrandt</span></div> -->
+            </div>
           <div>
             <img alt="" src="resources/object_5/rgb.png" /><br />
-            <span class="thumbnail-text">MayaTablets</span></div>
+            </div>
+            <!--<span class="thumbnail-text">MayaTablets</span></div> -->
 
           <!-- <div> -->
           <!--   <img alt="" src="photos/img_1.jpg" /><br /> -->
@@ -148,6 +158,13 @@
           <div class="onoffswitch-switch"></div>
         </label>
       </div>
+
+      <div id="iframe-wrap">
+
+
+				<iframe id="facebook-button" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flab.hakim.se%2Fscroll-effects%2F&layout=button_count&show_faces=false&width=93&action=like&font=arial&colorscheme=light&height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:85px; height:24px; position: relative; top: 4px;" allowTransparency="true"></iframe>
+			</div>
+
     </div>
 	  <!-- <button onclick="goFullScreen()">Go Fullscreen</button> -->
 
@@ -157,9 +174,11 @@
 
 		<script src="js/jsCarousel-2.0.0.js" type="text/javascript"></script>
 
+	  <script type="text/javascript" src="js/bootstrap.js"></script>
 	  <script type="text/javascript" src="js/LoadShader.js"></script>
 	  <script type="text/javascript" src="js/objects.js"></script>
 	  <script type="text/javascript" src="js/main.js"></script>
+
 
 	  <script>
 	    window.onload = init;

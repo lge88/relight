@@ -3,11 +3,6 @@ var objects = [
     id: "MayaTablets",
     src: "resources/object_1",
     annotations: [
-      {
-        x: 0,
-        y: 0,
-        text: "Object 1"
-      }
     ]
   },
   {
@@ -15,9 +10,19 @@ var objects = [
     src: "resources/object_2",
     annotations: [
       {
-        x: 0,
-        y: 0,
-        text: "Object 2"
+        x: 800,
+        y: 500,
+        text: "How many lines can you see in this light area, why did the artist place"
+      },
+      {
+        x: 330,
+        y: 600,
+        text: "Can you see these water marks in the paper?"
+      },
+      {
+        x: 30,
+        y: 350,
+        text: "Who is the artist of the painting?"
       }
     ]
   },
@@ -25,11 +30,6 @@ var objects = [
     id: "BudaHead",
     src: "resources/object_3",
     annotations: [
-      {
-        x: 0,
-        y: 0,
-        text: "Object 3"
-      }
     ]
   },
   {
@@ -37,9 +37,19 @@ var objects = [
     src: "resources/object_4",
     annotations: [
       {
-        x: 512,
-        y: 512,
-        text: "Things 4"
+        x: 0,
+        y: 0,
+        text: "Who is the tomb dedicated to?"
+      },
+      {
+        x: 950,
+        y: 750,
+        text: "How old was the person when died?"
+      },
+      {
+        x: 0,
+        y: 500,
+        text: "What is his relationship to R.M. Taylor?"
       }
     ]
   },
@@ -47,11 +57,6 @@ var objects = [
     id: "Tablet",
     src: "resources/object_5",
     annotations: [
-      {
-        x: 400,
-        y: 400,
-        text: "Things 5"
-      }
     ]
   }
 ];
